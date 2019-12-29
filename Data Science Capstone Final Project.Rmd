@@ -1,0 +1,50 @@
+---
+title: "Data Science Capstone Final Project - Next Word Prediction"
+author: "Bryan Kong Chak-bun"
+date: "December 29, 2019"
+output: ioslides_presentation
+---
+<style type="text/css">
+code.r{ /* Code block */
+    font-size: 14px;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 14px;
+}
+</style>
+## Introduction
+
+Word prediction is widely used in mobile devices and search engines.  Thanks to the professors of Johns Hopkins University for assigning this challenging project in the [Coursera Specialization Courses](https://www.coursera.org/specializations/jhu-data-science) that we can learn a lot of text mining, machine learning, R programming and cloud computation.   
+
+The project is going to predict the next word giving some input of words.  It involves text mining using data from [SwiftKey](https://en.wikipedia.org/wiki/SwiftKey). We make use of the English Version of Swiftkey data sets.
+
+
+## Methods
+
+Text data sets captured from Twitter, news and blogs by Swiftkey were downloaded.  We make use of the "tidytext" package in R to tokenize the data into bigrams, trigrams and quadgrams.  As the tokenization involved large volume of memory that we cannot conduct this work in our PC, we deployed a RStudio Server Pro Standard in Google Cloud Platform to have computation. The n-gram files are sorted by their frequency.  
+
+In order to enhance the efficiency by reducing the memory, we truncate the files by eliminate the data with frequency of one. The processed bigrams, trigrams and quadgrams for three data sets, totally nine files in the rds format, are uploaded to GitHub for easy access.
+
+## Algorithm
+<font size="3.5">
+We adopt Markov Chains concept for finding the word.  Users are required to input some words for the prediction of next word.  The input text is splited in word by word format.  If the number of input word is one, the input word will match with the first word of the bigram data.  The program will output the second word with the highest frequency with the same input word in the bigram data.  Same logic is applied to the input words with higher number.  In case  users input more than three words, we used only the last three words and make use of the quadgram data for prediction.  The following is a part of the program for searching the second word for input word number is one.
+</font>
+```{r, eval=FALSE}
+        findSecondWord <- function(inputText, textLength, bigramsData){
+                wordInput <- inputText[textLength]
+                word1 <- bigramsData %>% 
+                        #select observations with the same word
+                        filter(wordInput == bigram1) %>%
+                        #select the observation with the highest frequency 
+                        filter(n == max(n)) %>%
+                        .[["bigram2"]]
+                if (length(word1)==0 | is.null(word1)== TRUE ) (word1 = "")
+                word1
+        }       
+```
+## Shiny Application, R codes and Ngram Data
+We use Shiny Application to create user interface for input text and word prediction.  Users can access the app by clicking the following link:
+
+
+The R codes for tokenization and Ngram data can be found in the following link to GitHub
+<https://github.com/kongchakbun/Data-Science-Capstone---Final-Project>
