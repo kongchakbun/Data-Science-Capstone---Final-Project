@@ -100,32 +100,32 @@ trigramsTwitter <- lineTwitter %>%
   count(trigram1, trigram2, trigram3, sort = TRUE)
 
 # Truncate the News bigram
-bigramsNewsOk <- filter(bigramsNews, n>1)
+bigramsNewsOk <- filter(bigramsNews, n>2)
 # Save the News bigram in rds format
 saveRDS(bigramsNewsOk, file = "bigramsNewsOk.rds")
 
 # Truncate the Blogs bigram
-bigramsBlogsOk <- filter(bigramsBlogs, n>1)
+bigramsBlogsOk <- filter(bigramsBlogs, n>2)
 # Save the Blogs bigram in rds format
 saveRDS(bigramsBlogsOk, file = "bigramsBlogsOk.rds")
 
 # Truncate the Twitter bigram
-bigramsTwitterOk <- filter(bigramsTwitter, n>1)
+bigramsTwitterOk <- filter(bigramsTwitter, n>2)
 # Save the Twitter bigram in rds format
 saveRDS(bigramsTwitterOk, file = "bigramsTwitterOk.rds")
 
 # Truncate the News trigram 
-trigramsNewsOk <- filter(trigramsNews, n>1)
+trigramsNewsOk <- filter(trigramsNews, n>2)
 # Save the News trigram in rds format
 saveRDS(trigramsNewsOk, file = "trigramsNewsOk.rds")
 
 # Truncate the Blogs trigram
-trigramsBlogsOk <- filter(trigramsBlogs, n>1)
+trigramsBlogsOk <- filter(trigramsBlogs, n>2)
 # Save the Blogs trigram in rds format
 saveRDS(trigramsBlogsOk, file = "trigramsBlogsOk.rds")
 
 # Truncate the Twitter trigram
-trigramsTwitterOk <- filter(trigramsTwitter, n>1)
+trigramsTwitterOk <- filter(trigramsTwitter, n>2)
 # Savel the Twitter trigram in rds fromat
 saveRDS(trigramsTwitterOk, file = "trigramsTwitterOk.rds")
 
@@ -138,7 +138,7 @@ quadgramsTwitter <- separate(quadgramsTwitter, quadgram, c("quadgram1", "quadgra
 gc()
 quadgramsTwitter <- count(quadgramsTwitter, quadgram1, quadgram2, quadgram3, quadgram4, sort = TRUE)
 gc()
-quadgramsTwitterOk <- filter(quadgramsTwitter, n>1) 
+quadgramsTwitterOk <- filter(quadgramsTwitter, n>2) 
 saveRDS(quadgramsTwitter, file = "quadgramsTwitter.rds")
 
 
@@ -149,7 +149,7 @@ gc()
 quadgramsNews <- separate(quadgramsNews, quadgram, c("quadgram1", "quadgram2", "quadgram3", "quadgram4"), sep = " ")
 gc()
 quadgramsNews <- count(quadgramsNews, quadgram1, quadgram2, quadgram3, quadgram4, sort = TRUE)
-quadgramsNewsOk <- filter(quadgramsNews, n>1)
+quadgramsNewsOk <- filter(quadgramsNews, n>2)
 saveRDS(quadgramsNewsOk, file = "quadgramsNewsOk.rds")
 
 # Create the quadgram for the Blogs data set
@@ -159,5 +159,5 @@ gc()
 quadgramsBlogs <- separate(quadgramsBlogs, quadgram, c("quadgram1", "quadgram2", "quadgram3", "quadgram4"), sep = " ")
 gc()
 quadgramsBlogs <- count(quadgramsBlogs, quadgram1, quadgram2, quadgram3, quadgram4, sort = TRUE)
-quadgramsBlogsOk <- filter(quadgramsBlogs, n>1)
+quadgramsBlogsOk <- filter(quadgramsBlogs, n>2)
 saveRDS(quadgramsBlogsOk, file = "quadgramsBlogsOk.rds")
